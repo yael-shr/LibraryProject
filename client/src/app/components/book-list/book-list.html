@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>ספריית הספרים שלי</h2>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th> כותרת</th>
+        <th>מחבר</th>
+        <th>תאור</th>
+        <th>סטטוס</th>
+        <th>קטגוריה</th>
+         <th>פעולות</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{ book.Title}}</td>
+        <td>{{ book.AuthorName }}</td>
+        <td>{{ book.Description }}</td>
+        <td>{{ book.StatusName }}</td>
+        <td>{{ book.CategoryName }}</td>
+        <td>
+          <button class="btn btn-info">פרטים</button>
+          <button class="btn btn-danger">מחיקה</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
