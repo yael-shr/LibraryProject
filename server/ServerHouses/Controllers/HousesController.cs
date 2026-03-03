@@ -48,11 +48,38 @@ namespace ServerHouses.Controllers
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
+                        // בתוך הפונקציה Post, תחליפי את הלולאה הקיימת בזה:
+
                         if (request.parameters != null)
                         {
                             foreach (var param in request.parameters)
                             {
-                                cmd.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
+                                var value = param.Value;
+
+                                // חילוץ הערך האמיתי מתוך ה-JsonElement
+                                if (value is System.Text.Json.JsonElement element)
+                                {
+                                    switch (element.ValueKind)
+                                    {
+                                        case System.Text.Json.JsonValueKind.Number:
+                                            value = element.GetInt32();
+                                            break;
+                                        case System.Text.Json.JsonValueKind.String:
+                                            value = element.GetString();
+                                            break;
+                                        case System.Text.Json.JsonValueKind.True:
+                                            value = true;
+                                            break;
+                                        case System.Text.Json.JsonValueKind.False:
+                                            value = false;
+                                            break;
+                                        default:
+                                            value = element.GetRawText();
+                                            break;
+                                    }
+                                }
+
+                                cmd.Parameters.AddWithValue(param.Key, value ?? DBNull.Value);
                             }
                         }
 

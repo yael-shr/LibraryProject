@@ -1,1 +1,17 @@
-<p>book-details works!</p>
+<ng-template #loading>
+  <div class="details-card">
+    <p>טוען פרטי ספר...</p>
+  </div>
+</ng-template>
+
+<div *ngIf="book; else loading" class="details-card">
+  <!-- <pre style="background: #eee; padding: 10px;">Debug: {{ book | json }}</pre> -->
+
+  <h2>{{ book.Title }}</h2>
+  <p><strong>מחבר:</strong> {{ book.AuthorName }}</p>
+  <p><strong>תיאור:</strong> {{ book.Description }}</p>
+  <p><strong>סטטוס:</strong> {{ book.StatusName }}</p>
+  <p><strong>קטגוריה:</strong> {{ book.CategoryName }}</p>
+  
+  <a routerLink="/" class="back-btn">חזרה לרשימה</a>
+</div>

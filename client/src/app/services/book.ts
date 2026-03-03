@@ -29,4 +29,9 @@ export class BookService {
   deleteBook(bookId: number): Observable<any> {
     return this.execute('DeleteBook', { id: bookId });
   }
+
+  // במקום מה שיש כרגע, תנסי את זה:
+getBookById(bookId: number): Observable<Book> {
+  return this.execute('Books_GetById', { id: bookId });
+}
 }

@@ -1,6 +1,6 @@
 <div class="container">
   <h2>ספריית הספרים שלי</h2>
-  
+  <!-- <pre>{{ books | json }}</pre> -->
   <table class="table">
     <thead>
       <tr>
@@ -17,10 +17,9 @@
         <td>{{ book.Title}}</td>
         <td>{{ book.AuthorName }}</td>
         <td>{{ book.Description }}</td>
-        <td>{{ book.StatusName }}</td>
         <td>{{ book.CategoryName }}</td>
         <td>
-          <button class="btn btn-info">פרטים</button>
+           <button class="btn btn-info" [routerLink]="['/book', book.Id]">פרטים</button>
           <button class="btn btn-danger">מחיקה</button>
         </td>
       </tr>
