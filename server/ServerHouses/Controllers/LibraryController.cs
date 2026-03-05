@@ -9,11 +9,11 @@ namespace ServerHouses.Controllers
 {
     [Route("api/")]
     [ApiController]
-    public class HousesController : ControllerBase
+    public class LibraryController : ControllerBase
     {
         private readonly string _connectionString;
 
-        public HousesController(IConfiguration configuration)
+        public LibraryController(IConfiguration configuration)
         {
  
             _connectionString = configuration.GetConnectionString("DefaultConnection");
