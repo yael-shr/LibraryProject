@@ -22,16 +22,12 @@ export class BookDetails implements OnInit {
     private cdr: ChangeDetectorRef
   ) {}
 
-// בקובץ src/app/components/book-details/book-details.ts
 ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
       this.bookService.getBookById(id).subscribe((data: any) => {
-        // אם הנתונים מגיעים כערך בתוך אובייקט, או כמערך ישירות
         const result = data.value || data;
-        
-        // כאן התיקון: אם זה מערך, ניקח את האיבר הראשון שבו
-        this.book = Array.isArray(result) ? result[0] : result;
+                this.book = Array.isArray(result) ? result[0] : result;
         this.cdr.detectChanges();
       });
     }

@@ -1,1 +1,37 @@
-<p>book-edit works!</p>
+<div class="container">
+  <h2>{{ isEditMode ? 'עריכת ספר' : 'הוספת ספר חדש' }}</h2>
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>כותרת:</label>
+      <input formControlName="Title" type="text" />
+    </div>
+    <div>
+  <label>תיאור:</label>
+  <textarea formControlName="Description"></textarea>
+</div>
+    <div>
+<label>מחבר:</label>
+<select formControlName="AuthorId">
+  <option *ngFor="let author of authors" [ngValue]="author.AuthorId">
+    {{ author.AuthorName }}
+  </option>
+</select>
+</div>
+    <div>
+  <label>קטגוריה:</label>
+ <select formControlName="CategoryId">
+  <option *ngFor="let cat of categories" [value]="cat.CategoryId">
+    {{ cat.CategoryName }}
+  </option>
+</select>
+<br>
+ <label>סטטוס:</label>
+<select formControlName="StatusId">
+  <option *ngFor="let stat of statuses" [ngValue]="stat.StatusId">
+    {{ stat.StatusName }}
+  </option>
+</select>
+</div>
+    <button type="submit" [disabled]="bookForm.invalid">שמור</button>
+  </form>
+</div>

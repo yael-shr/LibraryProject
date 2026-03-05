@@ -22,6 +22,10 @@ export class BookService {
     return this.http.post<any>(this.apiUrl, request);
   }
 
+  public executeSP(spName: string, parameters: any = {}): Observable<any> {
+    return this.execute(spName, parameters);
+  }
+
   getAllBooks(): Observable<Book[]> {
     return this.execute('Books_GetAll_Search');
   }
@@ -30,8 +34,23 @@ export class BookService {
     return this.execute('DeleteBook', { id: bookId });
   }
 
-  // במקום מה שיש כרגע, תנסי את זה:
+  addBook(book: Book): Observable<any> {
+return this.execute('Books_Create', book);  }
+
+  updateBook(book: Book): Observable<any> {
+    return this.execute('Books_Update', book);
+  }
+
 getBookById(bookId: number): Observable<Book> {
   return this.execute('Books_GetById', { id: bookId });
+}
+getCategories(): Observable<any[]> {
+  return this.execute('Categories_GetAll'); 
+}
+getStatuses(): Observable<any[]> {
+  return this.execute('Statuses_GetAll');
+}
+getAuthors(): Observable<any[]> {
+  return this.execute('Authors_GetAll'); 
 }
 }
