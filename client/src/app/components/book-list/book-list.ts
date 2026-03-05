@@ -9,7 +9,8 @@ import { ChangeDetectorRef } from '@angular/core';
   selector: 'app-book-list',
   standalone: true,
   imports: [CommonModule,RouterLink],
-  templateUrl: './book-list.html'
+  templateUrl: './book-list.html',
+  styleUrl: './book-list.css' 
 })
 export class BookListComponent implements OnInit {
   books: Book[] = []; 
@@ -19,10 +20,11 @@ export class BookListComponent implements OnInit {
   ngOnInit(): void {
     this.loadBooks(); 
   }
+  
 loadBooks() {
   this.bookService.getAllBooks().subscribe((data: any) => {
-    console.log('הנה הספרים שהגיעו:', data); // תסתכלי מה כתוב כאן!
-    this.books = data.value || data; // Handle both array and object with 'value' property
+    console.log('הנה הספרים שהגיעו:', data); 
+    this.books = data.value || data; 
     this.cdr.detectChanges();
   });
 }

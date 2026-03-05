@@ -1,8 +1,11 @@
 import { Routes } from '@angular/router';
 import { BookListComponent } from './components/book-list/book-list';
 import { BookDetails } from './components/book-details/book-details';
+import { BookEdit } from './components/book-edit/book-edit';
 
 export const routes: Routes = [
-  { path: '', component: BookListComponent }, // הדף הראשי יציג את הרשימה
-  { path: 'book/:id', component: BookDetails } // דף הפרטים
+  { path: '', component: BookListComponent }, 
+  { path: 'book/:id', component: BookDetails },
+  { path: 'books/add', component: BookEdit },
+  { path: 'books/edit/:id', component: BookEdit}
 ];

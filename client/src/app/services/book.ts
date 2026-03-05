@@ -35,8 +35,7 @@ export class BookService {
   }
 
   addBook(book: Book): Observable<any> {
-    return this.execute('Books_Add',  book);
-  }
+return this.execute('Books_Create', book);  }
 
   updateBook(book: Book): Observable<any> {
     return this.execute('Books_Update', book);
@@ -44,5 +43,14 @@ export class BookService {
 
 getBookById(bookId: number): Observable<Book> {
   return this.execute('Books_GetById', { id: bookId });
+}
+getCategories(): Observable<any[]> {
+  return this.execute('Categories_GetAll'); 
+}
+getStatuses(): Observable<any[]> {
+  return this.execute('Statuses_GetAll');
+}
+getAuthors(): Observable<any[]> {
+  return this.execute('Authors_GetAll'); 
 }
 }

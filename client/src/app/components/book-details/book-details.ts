@@ -27,7 +27,7 @@ ngOnInit(): void {
     if (id) {
       this.bookService.getBookById(id).subscribe((data: any) => {
         const result = data.value || data;
-        this.book = Array.isArray(result) ? result[0] : result;
+                this.book = Array.isArray(result) ? result[0] : result;
         this.cdr.detectChanges();
       });
     }

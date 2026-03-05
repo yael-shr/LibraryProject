@@ -5,13 +5,12 @@
 </ng-template>
 
 <div *ngIf="book; else loading" class="details-card">
-  <!-- <pre style="background: #eee; padding: 10px;">Debug: {{ book | json }}</pre> -->
 
   <h2>{{ book.Title }}</h2>
   <p><strong>מחבר:</strong> {{ book.AuthorName }}</p>
   <p><strong>תיאור:</strong> {{ book.Description }}</p>
   <p><strong>סטטוס:</strong> {{ book.StatusName }}</p>
   <p><strong>קטגוריה:</strong> {{ book.CategoryName }}</p>
-  
-  <a routerLink="/" class="back-btn">חזרה לרשימה</a>
+  <a [routerLink]="['/books/edit', book.Id]" class="btn btn-secondary">ערוך ספר</a>
+<a routerLink="/" class="btn btn-secondary">חזרה לרשימה</a>
 </div>
