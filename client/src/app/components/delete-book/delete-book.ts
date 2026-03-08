@@ -1,7 +1,7 @@
 // src/app/delete-book/delete-book.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BookService } from '../services/book';
+import { BookService } from '../../services/book';
 import { CommonModule } from '@angular/common';
 
 @Component({
