@@ -1,59 +1,43 @@
-# LibraryClient
+# מערכת לניהול ספרייה (Library Management System)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.0.
+## נושא הפרויקט
+הפרויקט עוסק בניהול מלאי והשאלות של ספרייה. המערכת מאפשרת מעקב אחרי ספרים, סיווגם לפי קטגוריות וסופרים, וניהול סטטוס הזמינות של כל ספר (זמין, מושאל, בתיקון, אבוד או שמור).
 
-## Development server
+---
 
-To start a local development server, run:
+## מבנה בסיס הנתונים
+בסיס הנתונים מורכב מ-4 טבלאות עיקריות המקושרות ביניהן בקשרי יחיד לרבים (One-to-Many):
 
-```bash
-ng serve
-```
+* **Statuses (סטטוסים):** מכילה את מצבי הזמינות של הספרים.
+* **Categories (קטגוריות):** מכילה את סיווג התוכן של הספרים (מתח, היסטוריה, ילדים וכו').
+* **Authors (סופרים):** מכילה את שמות המחברים.
+* **Books (ספרים):** טבלת הישות המרכזית המקשרת בין כל הנתונים באמצעות Foreign Keys לסופר, לקטגוריה ולסטטוס.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## פרוצדורות מאוחסנות (Stored Procedures)
+הפרוצדורות מאפשרות ניהול לוגי של הנתונים בצורה מאובטחת ויעילה:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+* `sp_GetAllBooksWithDetails`: שליפת כל הספרים עם פרטי הסופר והקטגוריה באמצעות JOIN.
+* `sp_InsertNewBook`: הוספת ספר חדש למערכת.
+* `sp_UpdateBookStatus`: עדכון מצב הספר (זמינות).
+* `sp_GetBooksByCategory`: סינון ושליפת ספרים לפי קטגוריה.
+* `sp_DeleteBook`: מחיקת ספר מהמערכת לפי המזהה שלו.
+* `sp_SearchBookByTitle`: חיפוש טקסטואלי חופשי בכותרות הספרים.
+* `sp_GetLibraryStatistics`: הפקת סיכום נתונים (סטטיסטיקות).
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## הוראות הרצה
 
-```bash
-ng generate --help
-```
+### צד השרת (Server Side)
+1. ודא כי SQL Server מותקן ופעיל במחשבך.
+2. הרץ את סקריפט יצירת הטבלאות ולאחר מכן את סקריפט הכנסת הנתונים (INSERT).
+3. בתיקיית השרת, עדכן את מחרוזת החיבור (Connection String) בקובץ ההגדרות.
+4. הרץ את הפרויקט באמצעות הפקודה: `dotnet run` (או בהתאם לסביבת הפיתוח שלך).
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### צד הלקוח (Client Side)
+1. פתח טרמינל בתיקיית הלקוח.
+2. התקן את הספריות הנדרשות:
+   ```bash
+   npm install
