@@ -21,7 +21,7 @@
         <td>{{ book.CategoryName }}</td>
         <td>
          <a class="btn btn-secondary" [routerLink]="['/book', book.Id]">פרטים</a>
-         <button class="btn btn-danger">מחיקה</button>
+         <button class="btn btn-danger" [routerLink]="['/books/delete', book.Id]">מחיקה</button>
         </td>
       </tr>
     </tbody>
