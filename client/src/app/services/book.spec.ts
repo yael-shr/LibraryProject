@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http'; 
-import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing'; // הדרך החדשה
+import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing'; 
 import { BookService } from './book';
 
 describe('BookService', () => {

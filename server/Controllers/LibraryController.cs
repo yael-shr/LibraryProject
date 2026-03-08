@@ -48,15 +48,11 @@ namespace ServerHouses.Controllers
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        // בתוך הפונקציה Post, תחליפי את הלולאה הקיימת בזה:
-
                         if (request.parameters != null)
                         {
                             foreach (var param in request.parameters)
                             {
                                 var value = param.Value;
-
-                                // חילוץ הערך האמיתי מתוך ה-JsonElement
                                 if (value is System.Text.Json.JsonElement element)
                                 {
                                     switch (element.ValueKind)
