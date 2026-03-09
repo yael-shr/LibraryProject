@@ -1,4 +1,3 @@
-// src/app/delete-book/delete-book.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../services/book';
@@ -20,7 +19,7 @@ export class DeleteBook implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // שליפת ה-ID מה-URL
+  
     this.bookId = Number(this.route.snapshot.paramMap.get('id'));
   }
 
@@ -29,14 +28,14 @@ export class DeleteBook implements OnInit {
       this.bookService.deleteBook(this.bookId).subscribe({
         next: () => {
           alert('הספר נמחק בהצלחה!');
-          this.router.navigate(['/']); // חזרה לרשימה לאחר מחיקה
-        },
+          this.router.navigate(['/']);
+        },    
         error: (err) => console.error('שגיאה במחיקה:', err)
       });
     }
   }
 
   cancel(): void {
-    this.router.navigate(['/']); // ביטול וחזרה
+    this.router.navigate(['/']); 
   }
 }
